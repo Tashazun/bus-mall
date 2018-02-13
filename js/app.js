@@ -52,11 +52,7 @@ getRandomImg: function() {
         const selected = this.products[randomNumber];
     if (picSelection.indexOf(selected) === -1) {
         picSelection.push(selected);
-        } else if (picSelection.length == 3) {
-            picSelection.forEach(function() {
-                selected.itemShown++;
-            })
-
+            selected.itemShown++;
         }
 
     };
