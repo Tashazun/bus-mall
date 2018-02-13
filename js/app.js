@@ -33,10 +33,8 @@ const game = {
         const url = event.target.src;
         for(let i = 0; i < game.products.length; i ++) {
             const items = game.products[i];
-            
             console.log('index of url', url.indexOf(items.imageUrl));
             const endOfUrl = url.slice( url.indexOf(items.imageUrl), url.length );
-
             if (endOfUrl === items.imageUrl) {
                 items.timesCaught++;
                 console.table(items);
@@ -53,7 +51,10 @@ const game = {
         const selected = this.products[randomNumber];
     if (picSelection.indexOf(selected) === -1) {
         picSelection.push(selected);
-        } 
+    } 
+        picSelection.forEach(function() {
+            selected.itemShown++;
+        })
     };
     console.table(picSelection);
     return picSelection;
@@ -78,6 +79,7 @@ function Product (imageUrl, name) {
     this.imageUrl = imageUrl;
     this.name = name;
     this.timesCaught = 0;
+    this.itemShown = 0;
 }
 
 Product.prototype.render = function() {
