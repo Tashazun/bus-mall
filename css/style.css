@@ -4,13 +4,6 @@ body {
     margin: 0;
   }
 
-
-  #game-board div {
-    display: flex;
-    flex-direction: row;
-  
-  }
-
   div {
       max-height: 15%;
       max-width: 15%;
