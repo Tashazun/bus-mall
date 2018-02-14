@@ -1,16 +1,34 @@
 body {
-    background-color: #581845;
+    background: radial-gradient(rgb(255, 192, 203), rgba(255, 192, 203, 0.301)),  url('../imgs/flower.jpg');
     padding: 0;
     margin: 0;
   }
+  main {
+      display: flex;
+      flex-direction: column;
+      margin: auto;
+  }
+
+  #game-board {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 50%;
+    min-height: 500px;
+  }
 
   div {
-      max-height: 15%;
-      max-width: 15%;
-      border: 5px solid black;
+      width: fit-content;
+      height: fit-content;
+      max-width: 12%;
+      min-width:5%;
+      height: 12%;
+      overflow: hidden;
   }
   
   #game-board img {
-      width: 100%;
-      height: 100%;
+    max-height: 200px;
+  }
+  #canvas {
+      display: none;
   }
