@@ -2,86 +2,85 @@ const game = {
     products: [],
     gameLength: 0,
 
- // function that fills my product array
+    // function that fills my product array
     start: function() {
 
-        if ( localStorage.getItem('item')) {
-            const item = JSON.parse(localStorage.getItem('item'));
-            for (let i=0; i< item.length; i++) {
-                const items = item[i];
-                const newItems = new Product(item[i].imageURL, item[i].name, item[i].timesCaught);
-                this.products.push(newItems);
+        if (localStorage.getItem('newItems')) {
+            const item = JSON.parse(localStorage.getItem('newItems'));
+            for ( let i = 0; i < item.length; i++) {
+                const fillItems = new Product(item[i].imageUrl, item[i].name, item[i].timesCaught);
+                this.products.push(fillItems);
             }
         } else {
-        this.products.push( 
-            new Product('imgs/bag.jpg','bag', 0), 
-            new Product('imgs/banana.jpg','banana', 0), 
-            new Product('imgs/bathroom.jpg','bathroom', 0), 
-            new Product('imgs/boots.jpg','boots', 0), 
-            new Product('imgs/breakfast.jpg','breakfast', 0), 
-            new Product('imgs/bubblegum.jpg', 'bubblegum', 0), 
-            new Product('imgs/chair.jpg', 'chair', 0), 
-            new Product('imgs/cthulhu.jpg', 'cthulhu', 0), 
-            new Product('imgs/dog-duck.jpg', 'dog-duck', 0), 
-            new Product('imgs/dragon.jpg', 'dragon', 0), 
-            new Product('imgs/pen.jpg', 'pen', 0), 
-            new Product('imgs/pet-sweep.jpg', 'pet-sweep', 0), 
-            new Product('imgs/scissors.jpg', 'scissors', 0), 
-            new Product('imgs/shark.jpg', 'shark', 0), 
-            new Product('imgs/sweep.png', 'sweep', 0), 
-            new Product('imgs/tauntaun.jpg', 'tauntaun', 0), 
-            new Product('imgs/unicorn.jpg', 'unicorn', 0), 
-            new Product('imgs/usb.gif', 'usb', 0), 
-            new Product('imgs/water-can.jpg', 'water-can', 0), 
-            new Product('imgs/wine-glass.jpg', 'wine-glass', 0) 
-        );
-    }
-// shows the first set of 3 pictures
-    this.showPics();
+            this.products.push(
+                new Product('imgs/bag.jpg','bag', 0),
+                new Product('imgs/banana.jpg','banana', 0),
+                new Product('imgs/bathroom.jpg','bathroom', 0),
+                new Product('imgs/boots.jpg','boots', 0),
+                new Product('imgs/breakfast.jpg','breakfast', 0),
+                new Product('imgs/bubblegum.jpg', 'bubblegum', 0),
+                new Product('imgs/chair.jpg', 'chair', 0),
+                new Product('imgs/cthulhu.jpg', 'cthulhu', 0),
+                new Product('imgs/dog-duck.jpg', 'dog-duck', 0),
+                new Product('imgs/dragon.jpg', 'dragon', 0),
+                new Product('imgs/pen.jpg', 'pen', 0),
+                new Product('imgs/pet-sweep.jpg', 'pet-sweep', 0),
+                new Product('imgs/scissors.jpg', 'scissors', 0),
+                new Product('imgs/shark.jpg', 'shark', 0),
+                new Product('imgs/sweep.png', 'sweep', 0),
+                new Product('imgs/tauntaun.jpg', 'tauntaun', 0),
+                new Product('imgs/unicorn.jpg', 'unicorn', 0),
+                new Product('imgs/usb.gif', 'usb', 0),
+                new Product('imgs/water-can.jpg', 'water-can', 0),
+                new Product('imgs/wine-glass.jpg', 'wine-glass', 0)
+            );
+        }
+        // shows the first set of 3 pictures
+        this.showPics();
 
-    const board = document.getElementById('game-board');
-    board.addEventListener('click', function () {
-        game.gameLength++;
-        const url = event.target.src;
+        const board = document.getElementById('game-board');
+        board.addEventListener('click', function () {
+            game.gameLength++;
+            const url = event.target.src;
             for (let i = 0; i < game.products.length; i ++) {
-                    const items = game.products[i];
-                    const endOfUrl = url.slice( url.indexOf(items.imageUrl), url.length );
-                    if (endOfUrl === items.imageUrl) {
-                        items.timesCaught++;
-                        console.table(items);
-                    }
+                const items = game.products[i];
+                const endOfUrl = url.slice( url.indexOf(items.imageUrl), url.length );
+                if (endOfUrl === items.imageUrl) {
+                    items.timesCaught++;
+                    console.table(items);
                 }
-                game.clearBoard();
-                game.showPics();
+            }
+            game.clearBoard();
+            game.showPics();
             if (game.gameLength === 25) {
                 game.clearBoard();
                 game.drawChart();
                 game.endGame();
             }
-    }); 
-}, // end start function
+        });
+    }, // end start function
 
     getRandomImg: function() {
-    const picSelection = [];
-    for (i= 0; picSelection.length < 3; i++) {
-        const randomNumber = Math.floor(Math.random() * this.products.length);
-        const selected = this.products[randomNumber];
-    if (picSelection.indexOf(selected) === -1) {
-        picSelection.push(selected);
-        selected.itemShown++;
-    } 
+        const picSelection = [];
+        for (let i = 0; picSelection.length < 3; i++) {
+            const randomNumber = Math.floor(Math.random() * this.products.length);
+            const selected = this.products[randomNumber];
+            if (picSelection.indexOf(selected) === -1) {
+                picSelection.push(selected);
+                selected.itemShown++;
+            }
 
 
-    };
-    console.table(picSelection);
-    return picSelection;
-},
+        };
+        console.table(picSelection);
+        return picSelection;
+    },
 
     showPics: function() {
         const images = this.getRandomImg();
         const squares = document.querySelectorAll('div.four');
-        for (i= 0; i < squares.length; i++) {
-        squares[i].appendChild(images[i].render());
+        for (let i = 0; i < squares.length; i++) {
+            squares[i].appendChild(images[i].render());
         }
     },
     clearBoard: function () {
@@ -91,7 +90,7 @@ const game = {
         }
     },
     endGame: function() {
-        localStorage.setItem('items', JSON.stringify(game.products));
+        localStorage.setItem('newItems', JSON.stringify(this.products));
     },
 
     drawChart: function () {
@@ -107,8 +106,8 @@ const game = {
         for(let i = 0; i < this.products.length; i ++) {
             names.push(this.products[i].name);
             timesClicked.push(this.products[i].timesCaught);
-
-        const myChart = new Chart(chartCtx, {
+        }
+        const myChart = new Chart(chartCtx, {// eslint-disable-line
             type: 'bar',
             data: {
                 labels: names,
@@ -173,8 +172,7 @@ const game = {
                     }]
                 }
             }
-        })
-        }
+        });
     },
 
 };
