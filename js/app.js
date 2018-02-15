@@ -1,9 +1,22 @@
 const game = {
     products: [],
     gameLength: 0,
+    numItems: 3,
+    numRounds: 3,
+    
+    getSettings: function() {
 
+        if (localStorage.getItem('settings')) {
+            const saveSettings = JSON.parse(localStorage.getItem('settings'));
+            console.log(saveSettings);
+            this.numItems = parseInt(saveSettings.numItems);
+            this.numRounds = parseInt(saveSettings.numRounds);
+            console.log(this.numItems, this.numRounds);
+        }
+    },
     // function that fills my product array
     start: function() {
+        this.getSettings();
 
         if (localStorage.getItem('newItems')) {
             const item = JSON.parse(localStorage.getItem('newItems'));
@@ -52,7 +65,7 @@ const game = {
             }
             game.clearBoard();
             game.showPics();
-            if (game.gameLength === 25) {
+            if (game.gameLength === game.numRounds) {
                 game.clearBoard();
                 game.drawChart();
                 game.endGame();
@@ -62,7 +75,7 @@ const game = {
 
     getRandomImg: function() {
         const picSelection = [];
-        for (let i = 0; picSelection.length < 3; i++) {
+        for (let i = 0; picSelection.length < game.numItems; i++) {
             const randomNumber = Math.floor(Math.random() * this.products.length);
             const selected = this.products[randomNumber];
             if (picSelection.indexOf(selected) === -1) {
@@ -104,7 +117,7 @@ const game = {
         const button = document.getElementById('refresh');
         button.setAttribute('style', 'display: inline');
         button.addEventListener('click', function () {
-            window.location.reload(true);
+            window.location = 'settings.html';
         });
         const chartCanvas = document.getElementById('chart');
         const chartCtx = chartCanvas.getContext('2d');
