@@ -30,26 +30,29 @@ main {
 }
 
 #game-board {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    height: 50%;
-    min-height: 400px;
-  }
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 50%;
+  min-height: 400px;
+}
 
 div {
-      width: fit-content;
-      height: fit-content;
-      max-width: 12%;
-      min-width:5%;
-      height: 12%;
-      overflow: hidden;
-      border: 2px solid gray;
-  }
+  width: fit-content;
+  height: fit-content;
+  max-width: 12%;
+  min-width:5%;
+  height: 12%;
+  overflow: hidden;
+  border: 2px solid gray;
+}
   
-  #game-board img {
-    max-height: 200px;
- }
-  #canvas {
-      display: none;
-  } 
+#game-board img {
+  max-height: 200px;
+}
+#canvas {
+  display: none;
+} 
+#refresh {
+  display: none;
+}

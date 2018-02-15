@@ -97,8 +97,15 @@ const game = {
         // get the canvas to show chart
         const display = document.getElementById('canvas');
         display.setAttribute('style', 'display: block');
+
         const display2 = document.getElementById('game-board');
         display2.setAttribute('style', 'display: none');
+
+        const button = document.getElementById('refresh');
+        button.setAttribute('style', 'display: inline');
+        button.addEventListener('click', function () {
+            window.location.reload(true);
+        });
         const chartCanvas = document.getElementById('chart');
         const chartCtx = chartCanvas.getContext('2d');
         const names = [];
@@ -107,7 +114,7 @@ const game = {
             names.push(this.products[i].name);
             timesClicked.push(this.products[i].timesCaught);
         }
-        const myChart = new Chart(chartCtx, {// eslint-disable-line
+        const myChart = new Chart(chartCtx, { // eslint-disable-line
             type: 'bar',
             data: {
                 labels: names,
