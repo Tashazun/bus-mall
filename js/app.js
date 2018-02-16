@@ -3,7 +3,7 @@ const game = {
     gameLength: 0,
     numItems: 3,
     numRounds: 3,
-    
+
     getSettings: function() {
 
         if (localStorage.getItem('settings')) {
@@ -14,10 +14,19 @@ const game = {
             console.log(this.numItems, this.numRounds);
         }
     },
+    setSquares: function() {
+        const addSquares = (this.numItems - 2);
+        const newDiv = document.getElementById('game-board');
+        for (let i = 0; i < addSquares; i++) {
+            const divSet = document.createElement('div');
+            newDiv.appendChild(divSet);
+        }
+    },
+
     // function that fills my product array
     start: function() {
         this.getSettings();
-
+        this.setSquares();
         if (localStorage.getItem('newItems')) {
             const item = JSON.parse(localStorage.getItem('newItems'));
             for ( let i = 0; i < item.length; i++) {
@@ -91,13 +100,13 @@ const game = {
 
     showPics: function() {
         const images = this.getRandomImg();
-        const squares = document.querySelectorAll('div.four');
+        const squares = document.querySelectorAll('div');
         for (let i = 0; i < squares.length; i++) {
             squares[i].appendChild(images[i].render());
         }
     },
     clearBoard: function () {
-        const allSquares = document.querySelectorAll('div.four');
+        const allSquares = document.querySelectorAll('div');
         for (let i = 0; i < allSquares.length; i ++) {
             allSquares[i].textContent = '';
         }

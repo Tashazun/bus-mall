@@ -56,3 +56,12 @@ div {
 #refresh {
   display: none;
 }
+
+#form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#info {
+  padding: 10%;
+}
