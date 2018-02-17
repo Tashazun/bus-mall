@@ -9,6 +9,24 @@ body {
   flex-direction: column;
 }
 
+#animation {
+  animation-name: color_change;
+	animation-duration: 10s;
+	animation-iteration-count: infinite;
+}
+@keyframes color_change {
+  0% { color: #1F9F87; }
+10% { color: #399D72; }
+20% { color: #519A5D; }
+30% { color: #67954A; }
+40% { color:  #9F802F;}
+50% { color: #B96F3F;}
+60% { color: #C0674D;}
+70% { color: #9F802F;}
+80% { color: #67954A;}
+90% { color: #399D72;}
+100% { color: #1F9F87; }
+}
 
 header {
   height: 100px;
@@ -57,7 +75,7 @@ div {
   display: none;
   margin: auto;
 }
-/* Settings page */
+
 #form {
   display: flex;
   flex-direction: column;
@@ -68,9 +86,8 @@ div {
   margin: 5%;
   text-align: center;
 }
-.position {
-  margin: auto;
-  border: none;
+#position2 {
+  padding-left: 45%;
 }
 
 #button, #refresh {

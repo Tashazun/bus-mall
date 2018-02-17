@@ -11,6 +11,7 @@ const game = {
             console.log(saveSettings);
             this.numItems = parseInt(saveSettings.numItems);
             this.numRounds = parseInt(saveSettings.numRounds);
+            console.log(this.numItems, this.numRounds);
         }
     },
     setSquares: function() {
@@ -99,7 +100,7 @@ const game = {
 
     showPics: function() {
         const images = this.getRandomImg();
-        const squares = document.querySelectorAll('div.four');
+        const squares = document.querySelectorAll('div');
         for (let i = 0; i < squares.length; i++) {
             squares[i].appendChild(images[i].render());
         }
@@ -123,7 +124,7 @@ const game = {
         display2.setAttribute('style', 'display: none');
 
         const button = document.getElementById('refresh');
-        button.setAttribute('style', 'display: block');
+        button.setAttribute('style', 'display: inline');
         button.addEventListener('click', function () {
             window.location = 'settings.html';
         });
