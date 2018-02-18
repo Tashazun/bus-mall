@@ -126,7 +126,7 @@ const game = {
         const button = document.getElementById('refresh');
         button.setAttribute('style', 'display: inline');
         button.addEventListener('click', function () {
-            window.location = 'settings.html';
+            window.location = 'index.html';
         });
         const chartCanvas = document.getElementById('chart');
         const chartCtx = chartCanvas.getContext('2d');
