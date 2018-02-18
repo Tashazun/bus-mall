@@ -7,6 +7,6 @@ formSet.addEventListener('submit', function() {
     console.log(numItems, numRounds);
     const settings = {numItems: numItems, numRounds: numRounds};
     localStorage.setItem('settings', JSON.stringify(settings));
-    window.location = 'index.html';
+    window.location = 'selection.html';
 
 });
