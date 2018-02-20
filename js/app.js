@@ -19,6 +19,7 @@ const game = {
         const newDiv = document.getElementById('game-board');
         for (let i = 0; i < addSquares; i++) {
             const divSet = document.createElement('div');
+            divSet.setAttribute('class', 'four');
             newDiv.appendChild(divSet);
         }
     },
@@ -100,7 +101,7 @@ const game = {
 
     showPics: function() {
         const images = this.getRandomImg();
-        const squares = document.querySelectorAll('div');
+        const squares = document.getElementsByClassName('four');
         for (let i = 0; i < squares.length; i++) {
             squares[i].appendChild(images[i].render());
         }
